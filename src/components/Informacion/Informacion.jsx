@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 
+
 const Informacion = () => {
   const [data, setData] = useState(null);
-
+  const URL = import.meta.env.VITE_APP_URL;
+  const APIKEY = import.meta.env.VITE_APP_APIKEY;
+  const AUTH = import.meta.env.VITE_APP_AUTH;
+  
   const getData = async () => {
+    console.log(URL,APIKEY,AUTH);
     try {
-      const response = await fetch("https://ntiirqazzpdwwxqffxss.supabase.co/rest/v1/equipos?select=*",{
+      const response = await fetch(URL,{
         method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50aWlycWF6enBkd3d4cWZmeHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg0NTIwODYsImV4cCI6MjAyNDAyODA4Nn0.mr1JQe6gdgS6Fq5zz53DGXn7Hs8WQuz3RIi7rZTxi0k', // Reemplaza con tu clave de API de Supabase
-                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50aWlycWF6enBkd3d4cWZmeHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg0NTIwODYsImV4cCI6MjAyNDAyODA4Nn0.mr1JQe6gdgS6Fq5zz53DGXn7Hs8WQuz3RIi7rZTxi0k`, // Reemplaza con tu clave de API de Supabase
+                    'apikey': APIKEY,
+                    'Authorization': AUTH, 
       },
     });
       if (!response.ok) {
