@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Informacion = () => {
-  const [data, setData] = useState("3");
+  const [data, setData] = useState(null);
 
   const getData = async () => {
     try {
@@ -18,6 +18,7 @@ const Informacion = () => {
       }
       const jsonData = await response.json();
       setData(jsonData);
+      console.log("tenemos los datos",jsonData)
     } catch (error) {
         console.error('Error al obtener los datos', error.message);
     }
@@ -26,11 +27,12 @@ const Informacion = () => {
   return (
     <div>
       <button onClick={getData}>Enviar</button>
-      {data && (
-                <div>
-                    {/* Renderiza los datos */}
-                </div>
-            )}
+      <ul>{data&&(
+            data.map((item, index) => (
+                <li key={index}>{item.teams}{item.puntos}{item.semana}</li>
+            ))
+)}
+        </ul>
     </div>
   );
 };
